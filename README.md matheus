@@ -1,0 +1,290 @@
+<div class versao 3.0.1 javascript>
+<div class="js-ajax js-cart-list cart-row">
+    {# Cart panel items #}
+    {% if cart.items %}
+      {% for item in cart.items %}
+        {% include "snipplets/cart-item-ajax.tpl" %}
+      {% endfor %}
+    {% endif %}
+</div>
+<div class="js-empty-ajax js-cart cart-row" {% if cart.items_count > 0 %}style="display:none;"{% endif %}>
+     {# Cart panel empty #}
+    <div class="alert alert-info">{{ "o carrinhoo de compras está vazío." | translate }}</div>
+</div>
+<div id="error-ajax-stock" style="display: none;">
+    <div class="alert alert-warning">
+         {{ "¡Uy! No tenemos más stock de este producto para agregar ao carrinho. Si querés podés" | translate }}<a href="{{ store.products_url }}" class="btn-link ml-1">{{ "ver otros acá" | translate }}</a>
+    </div>
+</div>
+<div class="cart-row">
+    {% include "snipplets/cart-totals.tpl" %}
+</div>
+<div class="js-cart-item cart-item form-row" data-item-id="{{ item.id }}">
+
+
+  {# Cart item image #}
+  <div class="col-2 {% if cart_page %}col-md-1{% endif %}">
+    <img src="{{ item.featured_image | product_image_url('medium') }}" class="img-fluid" />
+  </div>
+  <div class="col-10 {% if cart_page %}col-md-11{% endif %}">
+
+
+    {# Cart item name dos produtos  #}
+    <div class="cart-item-name">
+      <a href="{{ item.url }}">
+        {{ item.short_name }}
+      </a>
+      <small>{{ item.short_variant_name }}</small>
+    </div>
+
+
+    {# Cart item quantity controls #}
+    <span class="pull-left">
+      <button type="button" class="js-cart-quantity-btn cart-item-btn btn" onclick="LS.minusQuantity({{ item.id }}{% if not cart_page %}, true{% endif %})">
+        {% include "snipplets/svg/minus.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
+      </button>
+      <span>
+        <input type="number" name="quantity[{{ item.id }}]" data-item-id="{{ item.id }}" value="{{ item.quantity }}" class="js-cart-quantity-input cart-item-input form-control"/>
+      </span>
+      <span class="js-cart-input-spinner cart-item-spinner" style="display: none;">
+        {% include "snipplets/svg/sync-alt.tpl" with {svg_custom_class: "icon-inline icon-spin svg-icon-text"} %}
+      </span>
+      <button type="button" class="js-cart-quantity-btn cart-item-btn btn" onclick="LS.plusQuantity({{ item.id }}{% if not cart_page %}, true{% endif %})">
+        {% include "snipplets/svg/plus.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
+      </button>
+    </span>
+
+
+    {# Cart item subtotal mobile #}
+    <h6 class="js-cart-item-subtotal cart-item-subtotal" data-line-item-id="{{ item.id }}">{{ item.subtotal | money }}</h6>
+  </div>
+
+
+  {# Cart item delete #}
+  <div class="col-1 cart-item-delete text-right">
+    <button type="button" class="btn" onclick="LS.removeItem({{ item.id }}{% if not cart_page %}, true{% endif %})">
+      {% include "snipplets/svg/trash-alt.tpl" with {svg_custom_class: "icon-inline icon-lg svg-icon-text"} %}
+    </button>
+  </div>
+</div>
+<div id="single-product" class=”js-product-detail js-product-container" data-variants="{{product.variants_object | json_encode }}" itemscope itemtype="http://schema.org/Product">
+
+HTML do detalhe do produto relacionados 
+
+</div>
+<div id="ajax-cart" class="cart-summary">
+    <a href="#" class="js-modal-open js-toggle-cart" data-toggle="#modal-cart">
+        {% include "snipplets/svg/shopping-bag.tpl" with {svg_custom_class: "icon-inline icon-w-14 svg-icon-text"} %}
+        <span class="js-cart-widget-amount cart-widget-amount">{{ "{1}" | translate(cart.items_count ) }}</span>
+    </a>
+</div> apertar o botao enter para agegar o produto
+<div id="ajax-cart" class="cart-summary"> apertar enter 
+    <a href="#" class="js-modal-open js-toggle-cart" data-toggle="#modal-cart">
+        {% include "snipplets/svg/shopping-bag.tpl" with {svg_custom_class: "icon-inline icon-w-14 svg-icon-text"} %}
+        <span class="js-cart-widget-amount cart-widget-amount">{{ "{1}" | translate(cart.items_count ) }}</span>
+    </a>
+</div> enter 
+{# Add to cart notification #}
+{# botao enter para agregar o produto selecionado#}
+{% if add_to_cart %}
+    <div class="js-alert-added-to-cart notification-floating notification-hidden" style="display: none;">
+        <div class="js-toggle-cart notification notification-primary"> 
+            {% include "snipplets/svg/shopping-bag.tpl" with {svg_custom_class: "icon-inline svg-icon-primary mr-1"} %}
+            <span>{{ '¡Excelente! Ya agregamos tu producto al carrito.' | translate }}</span>
+        </div>
+    </div>
+{% endif %}
+--- Cart ---
+
+
+es "Carrito"
+pt "Carrinho"
+en "Cart"
+es_mx "Carrito"
+
+
+es "Carrito de Compras"
+pt "Carrinho de Compras"
+en "Shopping Cart"
+es_mx "Carrito de compras"
+
+
+es "Carrito de compras"
+pt "Carrinho de compras"
+en "Shopping Cart"
+es_mx "Carrito de compras"
+
+
+es "Editar carrito"
+pt "Editar carrinho"
+en "Edit my cart"
+es_mx "Editar carrito"
+
+
+es "No podemos ofrecerte {1} unidades de {2}. Solamente tenemos {3} unidades."
+pt "Não podemos te oferecer {1} unidades do produto {2}. No momento, somente possuímos {3} unidades"
+en "We cannot offer you {1} units of {2}. We only have {3} left in stock."
+es_mx "Sólo tenemos {3} unidades de {2}."
+
+
+es "El monto mínimo de compra (subtotal) es de"
+pt "O valor mínimo de compra (subtotal) é de"
+en "The minimum subtotal value is"
+es_mx "El monto mínimo de compra (subtotal) es de"
+
+
+es "El monto mínimo de compra es de"
+pt "O valor mínimo de compra é de"
+en "The minimum purchase value is"
+es_mx "El monto mínimo de compra es de"
+
+
+es "¿Seguro que quieres borrar este artículo?"
+pt "Tem certeza de que deseja excluir este item?"
+en "Are you sure you want to delete this item?"
+es_mx "¿Realmente quieres borrar este producto?"
+
+
+es "Elige un monto mínimo de compra"
+pt "Escolha um valor mínimo de compra"
+en "Set a minimum purchase value"
+es_mx "Elige un monto mínimo de compra"
+
+
+es "Resumen del carrito de compras"
+pt "Resumo do carrinho de compras"
+en "Shopping cart summary"
+es_mx "Resumen del carrito de compras"
+
+
+es "Edición del carrito de compras"
+pt "Edição do carrinho de compras"
+en "Shopping cart editing"
+es_mx "Edición del carrito de compras"
+
+
+es "El producto fue agregado exitosamente al carrito"
+pt "O produto foi adicionado ao carrinho com sucesso"
+en "The product has been added succesfully to the cart"
+es_mx "Hemos agregado tu producto al carrito"
+
+
+es "¡Uy! No tenemos más stock de este producto para agregarlo al carrito. Si querés podés"
+pt "Oops! Não temos mais estoque para incluir este produto ao carrinho. Se você quiser, pode"
+en "Oops! We don&#39;t have enough stock left to add this product to the shopping cart. If you wish, you can"
+es_mx "¡Ups! No tenemos más stock de este producto para agregarlo al carrito. Si quieres"
+
+
+es "¡Uy! No tenemos más stock de este producto para agregarlo al carrito."
+pt "Oops! Não temos mais estoque para incluir este produto ao carrinho."
+en "Oops! We don&#39;t have enough stock left to add this product to the shopping cart."
+es_mx "¡Ups! No tenemos más stock de este producto para agregarlo al carrito."
+
+
+es "ver otros acá"
+pt "ver outros aquí"
+en "see others here"
+es_mx "ver otros aquí"
+ 
+ retorno ao inicio clicando na tecla 0 
+ tecla numero 0 
+
+
+
+es "¡Excelente! Ya agregamos tu producto al carrito."
+pt "Excelente! Já adicionamos o produto ao carrinho."
+en "Excellent! your product was added to the cart."
+es_mx "¡Excelente! Hemos agregado el producto al carrito."
+
+
+--- --- Headers
+
+
+es "Producto"
+pt "Produto"
+en "Product"
+es_mx "Producto"
+
+
+es "Cantidad"
+pt "Quantidade"
+en "Quantity"
+es_mx "Cantidad"
+
+
+es "Precio"
+pt "Preço"
+en "Price"
+es_mx "Precio"
+
+
+es "Stock"
+pt "Estoque"
+en "Stock"
+es_mx "Stock"
+
+
+es "Subtotal"
+pt "Subtotal"
+en "Subtotal"
+es_mx "Subtotal"
+
+
+es "eliminar"
+pt "remover"
+en "remove"
+es_mx "quitar"
+
+
+es "Total"
+pt "Total"
+en "Total"
+es_mx "Total"
+
+
+es "(opcional)"
+pt "(opcional)"
+en "(optional)"
+es_mx "(opcional)"
+
+
+--- --- Empty
+
+
+es "Carrito vacío"
+pt "Carrinho vazio"
+en "Empty cart"
+es_mx "Carrito vacío"
+
+
+es "No hay suficiente stock para agregar este producto al carrito."
+pt "Desculpe, mas não há estoque suficiente para incluir este produto ao carrinho."
+en "There&#39;s not enough stock left to add this product to the shopping cart."
+es_mx "No tenemos suficiente stock para agregar este producto al carrito."
+
+
+es "El carrito de compras está vacío."
+pt "O carrinho de compras está vazio."
+en "The shopping cart is empty."
+es_mx "El carrito de compras está vacío."
+
+
+--- --- CTA
+
+
+es "Cambiar Cantidades"
+pt "Alterar Quantidades"
+en "Update quantities"
+es_mx "Cambiar cantidades"
+
+
+es "Iniciar Compra"
+pt "Finalizar Compra"
+en "Go to Checkout"
+es_mx "Comprar"
+
+
+es "Seguir comprando"
+pt "Continuar comprando"
+en "Continue shopping"
+es_mx "Seguir comprando"
