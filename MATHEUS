@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title></title>
+    <meta name="description" content="Aprenda a criar um site completo que usa formulários em HTML">
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+    </meta>
+  </head>
+  <body>
+    <h1>Bem vindo ao site HTML Progressivo</h1>
+    MATHEUS DEPERON 
+    <h2>Preencha o formul&aacute;rio abaixo para participar do curso de HTML &amp; CSS
+    completo, online e gr&aacute;tis</h2>
+    <img src="images/bullet_checkmark_16_green.gif"><br>
+    <form method="post" action="Script_do_Formulario.php">
+      <!-- DADOS PESSOAIS-->
+      <fieldset>
+        <legend>Dados Pessoais</legend>
+        <table cellspacing="10">
+          <tbody><tr><td><label for="nome">Nome: </label></td><td align="left"><input name="email"></td><td><label for="sobrenome">Sobrenome:
+          </label></td><td align="left"><input name="sobrenome"></td></tr><tr><td><label>Nascimento:
+          </label></td><td align="left"><input maxlength="2" size="2" value="dd" name="dia"><input maxlength="2" size="2" value="mm" name="mes"><input maxlength="4" size="4" value="aaaa" name="ano"></td></tr><tr><td><label for="rg">RG:
+          </label></td><td align="left"><input maxlength="13" size="13" name="rg"></td></tr><tr><td><label>CPF:</label>
+          </td><td align="left"><input maxlength="9" size="9" name="cpf">-<input maxlength="2" size="2" name="cpf2"></td></tr></tbody>
+        </table>
+      </fieldset>
+      <br><!-- ENDEREÇO -->
+      <fieldset>
+        <legend>Dados de Endere&ccedil;os &ccedil;o</legend>
+        <table cellspacing="10">
+          <tbody><tr><td><label for="rua">Rua:</label> </td><td align="left"><input name="rua"></td><td><label for="numero">Numero:</label>
+          </td><td align="left"><input size="4" name="numero"></td></tr><tr><td><label for="bairro">Bairro:
+          </label></td><td align="left"><input name="bairro"></td></tr><tr><td><label for="estado">Estado:</label>
+          </td><td align="left"><select name="estado"></select></td></tr>
+          <option value="funnÃƒÂ§ÃƒÂ£o">Administrativa</option>
+          <option value="funcÃƒÂ£o">chefe de setor</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">datas</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">email &aacute;</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">cpf</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">telefone &aacute;</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">Distribui&ccedil;&atilde;o tarefas</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">cep&iacute;local</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">debito &aacute;</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">credito &atilde;</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">dinheiro</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">falso</option>
+          <option value="funÃƒÂ§ÃƒÂ£o">verdadeiro</option>
+          <tr><td><label for="funÃƒÂ§ÃƒÂ£o">fun&ccedil;&atilde;o: </label></td><td align="left"><input name="funÃƒÂ§ÃƒÂ£o"></td></tr><tr><td><label for="funÃƒÂ§ÃƒÂ£o">func:
+          </label></td><td align="left"><input maxlength="5" size="5" name="funÃƒÂ§ÃƒÂ£o">-<input maxlength="3" size="3" name="funcÃƒÂ£o2"></td></tr></tbody>
+        </table>
+      </fieldset>
+      <br><!-- DADOS DE LOGIN -->
+      <fieldset>
+        <legend>Dados de login</legend>
+        <table cellspacing="10">
+          <tbody><tr><td><label for="email">E-mail: </label></td><td align="left"><input name="email"></td></tr><tr><td><label for="imagem">Imagem
+          de perfil:</label> </td><td><input type="file" name="imagem"></td></tr><tr><td><label for="login">Login
+          de usu&aacute;rio: </label></td><td align="left"><input name="login"></td></tr><tr><td><label for="pass">Senha:
+          </label></td><td align="left"><input type="password" name="pass"></td></tr><tr><td><label for="passconfirm">Confirme
+          a senha:</label></td><td align="left"><input type="password" name="passconfirm"></td></tr></tbody>
+        </table>
+      </fieldset>
+      <br><input type="submit" value="Enviar Consulta"><input type="reset" value="Limpar">
+    </form>
+  </body>
+</html>
